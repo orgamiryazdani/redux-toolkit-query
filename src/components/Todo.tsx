@@ -1,12 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useGetTodoByIdQuery } from "../features/todoApi";
+import Error from "./error";
 
 function TodoDetails() {
   const { id } = useParams();
-  const { data, error, isLoading } = useGetTodoByIdQuery(id);
+  const { data, error, isLoading, refetch } = useGetTodoByIdQuery(id || "1");
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {JSON.stringify(error)}</p>;
+  if (error)
+    return (
+      <Error
+        error={error}
+        refetch={refetch}
+      />
+    );
 
   return (
     <div>

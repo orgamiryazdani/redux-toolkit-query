@@ -1,5 +1,6 @@
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
+import toast from "react-hot-toast";
 
 export const baseApiConfig = (baseQuery: BaseQueryFn, reducerPath: string) => ({
     reducerPath,
@@ -23,7 +24,7 @@ export const baseApiConfig = (baseQuery: BaseQueryFn, reducerPath: string) => ({
 export const errorMiddleware: Middleware = () => (next) => (action) => {
     if (isRejectedWithValue(action)) {
         const errorMessage = action.payload || 'خطایی رخ داد';
-        alert(errorMessage)
+        toast.error(errorMessage as string)
     }
     return next(action);
 };

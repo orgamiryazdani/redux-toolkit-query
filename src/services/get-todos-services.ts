@@ -1,11 +1,10 @@
-import { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { readData } from "../core/http-service"
 
-export const getTodosApi: BaseQueryFn<string, unknown, unknown> = async (url) => {
+export const getTodosApi = async (url: string) => {
     try {
         const data = await readData(url);
         return { data };
-    } catch (error: any) {
-        return { error: error?.response?.data || error?.message };
+    } catch (error: unknown) {
+        return { error: (error as { message: string }).message };
     }
 };

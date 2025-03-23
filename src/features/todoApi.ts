@@ -1,15 +1,19 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { getTodosApi } from "../services/get-todos-services";
+import { baseApiConfig } from "../lib/redux-toolkit-query";
+import { TodosDataType } from "../types/todos.interface";
 
 export const todosApi = createApi({
-    reducerPath: 'todoApi',
-    baseQuery: getTodosApi,
+    ...baseApiConfig(getTodosApi, 'todosApi'),
+    tagTypes: ['Todos'],
     endpoints: (builder) => ({
-        getAllTodos: builder.query({
+        getAllTodos: builder.query<TodosDataType[], void>({
             query: () => '/todos',
+            providesTags: [{ type: 'Todos', id: 'LIST' }]
         }),
-        getTodoById: builder.query({
+        getTodoById: builder.query<TodosDataType, string>({
             query: (id) => `/todos/${id}`,
+            providesTags: (_, __, id) => [{ type: 'Todos', id }]
         }),
     }),
 });

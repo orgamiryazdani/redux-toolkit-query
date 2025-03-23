@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 import { useGetAllTodosQuery } from "../features/todoApi";
+import Error from "./error";
 
 const Todos = () => {
-  const { isLoading, data, error } = useGetAllTodosQuery();
+  const { isLoading, data = [], error, refetch } = useGetAllTodosQuery();
 
   if (isLoading) return <p>loading...</p>;
-  if (error) return <p>error</p>;
+  if (error)
+    return (
+      <Error
+        error={error as string}
+        refetch={refetch}
+      />
+    );
 
   return (
     <div>
