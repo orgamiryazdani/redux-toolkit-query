@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetTodoByIdQuery } from "../features/todoApi";
+import { useGetTodoByIdQuery } from "../api/todos-api";
 import Error from "./error";
 
 function TodoDetails() {

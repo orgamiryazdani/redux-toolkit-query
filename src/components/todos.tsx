@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetAllTodosQuery } from "../features/todoApi";
+import { useGetAllTodosQuery } from "../api/todos-api";
 import Error from "./error";
 
 const Todos = () => {
