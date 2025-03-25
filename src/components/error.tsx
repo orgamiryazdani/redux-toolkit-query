@@ -1,6 +1,12 @@
-const Error = ({ error, refetch }: { error: string | unknown; refetch: () => void }) => {
+const Error = ({
+  error,
+  refetch,
+}: {
+  error: string | unknown;
+  refetch?: () => void;
+}) => {
   const refetchHandler = () => {
-    refetch();
+    if (refetch) refetch();
   };
 
   return (

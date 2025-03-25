@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { getTodosApi } from "../services/get-todos-services";
+import { getTodosApi } from "../services/todos-services";
 import { baseApiConfig } from "../lib/redux-toolkit-query";
 import { TodosDataType } from "../types/todos.interface";
 
